@@ -27,12 +27,20 @@ namespace FlowControl
                         Console.WriteLine("Tryck in din ålder för att se vilken pris som gäller.");
                         int age = int.Parse(Console.ReadLine());
                         if (age < 20)
-                            Console.WriteLine("Ungdomspris: 80kr");
-
-                        if (age > 64)
-                            Console.WriteLine("Pensionärspris: 90kr");
+                        { 
+                            Console.WriteLine("Ungdomspris: 80kr"); 
+                        }
                         else
-                            Console.WriteLine("Standardpris: 120kr");
+                        {
+                            if (age > 64)
+                            {
+                                Console.WriteLine("Pensionärspris: 90kr");
+                            }
+                            else
+                            { 
+                                Console.WriteLine("Standardpris: 120kr"); 
+                            }
+                        }
 
                         Console.WriteLine("Tryck in 1 om du vill planera ett besök, 2 eller 3 för att bli kvar i menyn.");
                         int choice = int.Parse(Console.ReadLine());
@@ -48,14 +56,21 @@ namespace FlowControl
                                 
                                 int yourAge = int.Parse(Console.ReadLine());
                                 if (yourAge < 20)
+                                {
                                     sum += 80;
-                                if (yourAge > 64)
-                                    sum += 90;
+                                }
                                 else
-                                    sum += 120;
+                                {
+                                    if (yourAge > 64)
+                                    {
+                                        sum += 90;
+                                    }
+                                    else
+                                        sum += 120;
+                                }
                             }
-                            Console.WriteLine("Antal personer:" + " " + count);
-                            Console.WriteLine("Total costnad:" + " " + sum);
+                            Console.WriteLine($"Antal personer: {count}");
+                            Console.WriteLine($"Total costnad: {sum}");
 
                             break;
                         }
@@ -73,8 +88,10 @@ namespace FlowControl
                         string text = Console.ReadLine();
                         for (int i = 1; i <= 10; i++)
                         {
-                            Console.Write(i + "." + text);
+                            Console.Write($"{i}. {text}, ");
+                           
                         }
+                        Console.WriteLine();
                         break;
 
                     // Split user input by spaces and print the 3th word of that input.
@@ -82,9 +99,16 @@ namespace FlowControl
                         Console.WriteLine("Skriv en mening till oss minst 3 ord. Vi ska returnera 3e ordet i meningen.");
                         string userInput = Console.ReadLine();
                         string[] wordsArray = userInput.Split(" ");
-                        Console.WriteLine(wordsArray[2]);
-                        break;
-
+                        if (wordsArray.Length >= 3)
+                        { 
+                            Console.WriteLine(wordsArray[2]);
+                            break;
+                        }
+                        else 
+                        {
+                            Console.WriteLine("Meningen ska bestå av minst 3 ord!");
+                            break;
+                        }
                     // Default case to inform about the wrong inputs.
                     default:
                         Console.WriteLine("This is a wrong input.");
