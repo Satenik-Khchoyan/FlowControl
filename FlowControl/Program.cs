@@ -111,7 +111,7 @@ namespace FlowControl
                         }
                     // Default case to inform about the wrong inputs.
                     default:
-                        Console.WriteLine("This is a wrong input.");
+                        Console.WriteLine("Det här är en felaktig input. ");
                         break;
                 }
             } while (endProgram);
