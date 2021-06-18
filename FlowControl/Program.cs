@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace FlowControl
 {
@@ -62,10 +63,19 @@ namespace FlowControl
             do
             {
                 string userInput = Console.ReadLine();
+                userInput.Trim();
                 string[] wordsArray = userInput.Split(" ");
-                if (wordsArray.Length >= 3)
+                List<string> noSpace = new List<string>();
+                foreach (var item in wordsArray)
                 {
-                    Console.WriteLine(wordsArray[2]);
+                    if (!string.IsNullOrWhiteSpace(item))
+                    {
+                        noSpace.Add(item);
+                    }
+                }
+                if (noSpace.Count >= 3)
+                {
+                    Console.WriteLine(noSpace[2]);
                     moreThanThree = true;
                 }
                 else
@@ -81,7 +91,10 @@ namespace FlowControl
         private static void RepeatTenTimes()
         {
             Console.WriteLine("Skriv en text till oss. Den ska vi upprepa 10 gånger!");
-            string text = Console.ReadLine();
+            string text;
+
+            do { text = Console.ReadLine(); } while (string.IsNullOrEmpty(text));
+
             for (int i = 1; i <= 10; i++)
             {
                 Console.Write($"{i}. {text}, ");
@@ -95,19 +108,26 @@ namespace FlowControl
         {
             Console.WriteLine("Tryck in din ålder för att se vilken pris som gäller.");
             int age = AskForInt();
-            if (age < 20)
+            if (age <= 5 || age >= 100)
             {
-                Console.WriteLine("Ungdomspris: 80kr");
+                Console.WriteLine("Pris: 0kr");
             }
             else
             {
-                if (age > 64)
+                if (age < 20)
                 {
-                    Console.WriteLine("Pensionärspris: 90kr");
+                    Console.WriteLine("Ungdomspris: 80kr");
                 }
                 else
                 {
-                    Console.WriteLine("Standardpris: 120kr");
+                    if (age > 64)
+                    {
+                        Console.WriteLine("Pensionärspris: 90kr");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Standardpris: 120kr");
+                    }
                 }
             }
         }
